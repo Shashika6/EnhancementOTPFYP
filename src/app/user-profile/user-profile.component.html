@@ -1,0 +1,85 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-primary">
+                      <h4 class="card-title">OTP Generator</h4>
+                  </div>
+                  <div class="card-body">
+                      <form [formGroup]="otpGeneratorForm">
+                          <div class="row"  >
+                              <div class="col-md-8"></div>
+                              <p [hidden]="IsHiddenTimer" style="border-radius: 20px; background: red; padding: 20px;  
+                              width: 300px; height: 15px; text-align: 
+                              center;padding-bottom: 5%; color: white;">{{timeLeft}} Seconds Left To Upload The Image ...</p>
+                          </div>
+                          <div class="row" style="padding-left:38%">
+                              <button mat-raised-button class="btn btn-primary" type="button" (click)="generateOTPEvent()" [disabled]="IsGenOTPDisable">Generate OTP</button>
+                             
+                                <span [innerHTML]="text"></span>
+    
+                                 &nbsp;&nbsp;
+                              <button mat-raised-button class="btn btn-primary" type="button" (click)="ReloadOTP()" [disabled]="IsRegenOTDisable">Reload OTP</button>
+                              <P [hidden]="!displayAttempts">Number of attempts remaining: {{numOfAttempts}} </P> 
+                          </div>
+                          <div class="row">
+                            <span [innerHTML]="text"></span>
+
+                             &nbsp;&nbsp;
+                          </div>
+                          <div class="row">
+                              <div class="col-md-5"></div>
+                              <div class="col-md-7">
+                                  <span style="color:red;" *ngIf="message">{{message}}</span>
+                              <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4"></div>
+                            <img [src]="imgURL" height="200" *ngIf="imgURL">
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Secret Key" type="password" formControlName="secretKey" #secretKey />
+                              </mat-form-field>
+                            </div>
+                            <div class="col-md-4"> </div>
+                        </div>
+                          
+                          <div class="row">
+                              <div class="col-md-4"></div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Hidden PIN in image" type="text">{{hiddenPin}}
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4"> </div>
+                          </div>
+                          
+                          <!-- <div class="row">
+                              <div class="col-md-4"></div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Enter OTP" type="text">{{userOTP}}
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4"> </div>
+                          </div> -->
+                       
+                          <div class="row" style="padding-left:44%">
+                            <button  mat-raised-button class="btn btn-primary" type="button" [disabled]="Isvalidate" (click)="validatePinEvent()">Validate</button>
+                            <P [hidden]="!validateAttempts">Number of attempts remaining: {{numOfValAttempts}} </P>
+                          </div>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+</div>
